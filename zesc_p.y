@@ -76,7 +76,7 @@ exp:
 
 int main(){
 	listaVariaveis = malloc(sizeof(struct Lista));
-	yyin=fopen("entrada.txt","r");
+	yyin=fopen("script.ze","r");
 	yyparse();
 	yylex();
 	fclose(yyin);
