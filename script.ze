@@ -1,0 +1,24 @@
+aa = 2
+bb = 4
+cc = 8
+dd = 10
+	zif(aa > bb){
+		zif(aa > cc){
+			print(aa)
+		}zelse{
+			print(cc)
+		}
+	}zelse{
+		zif (bb > cc){
+			print (bb)
+		}zelse{
+			print (cc)
+		}
+	}
+	
+	while(aa < dd){
+		aa = aa + 1
+		print (aa)
+	}
+		
+FIM
