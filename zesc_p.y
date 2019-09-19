@@ -24,7 +24,7 @@ void yyerror (char *s){
 %token <flo>NUM
 %token <str> DEC
 %token <str> VAR
-%token FIM IF ELSE WHILE PRINT
+%token FIM IF ELSE WHILE PRINT SCAN
 %token <fn> CMP
 
 %right '='
@@ -51,7 +51,8 @@ stmt: IF '(' exp ')' '{' list '}' %prec IFX {$$ = newflow('I', $3, $6, NULL);}
 	| IF '(' exp ')' '{' list '}' ELSE '{' list '}' {$$ = newflow('I', $3, $6, $10);}
 	| WHILE '(' exp ')' '{' list '}' {$$ = newflow('W', $3, $6, NULL);}
 	| VAR '=' exp {$$ = newasgn($1, $3);}
-	| PRINT '(' exp ')' { $$ = newast('P',$3,NULL);}
+	| PRINT '(' exp ')' { $$ = newast('P', $3, NULL);}
+	| SCAN '(' VAR ')' { $$ = scanasgn($3);}
 	;
 
 list:	  stmt{$$ = $1;}

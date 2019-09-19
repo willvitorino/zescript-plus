@@ -100,6 +100,19 @@ Ast * newasgn(char s[], Ast *v) { /*Função para um nó de atribuição*/
 	return (Ast *)a;
 }
 
+Ast * scanasgn(char s[]) { /*Função para um nó de atribuição*/
+	Symasgn *a = (Symasgn*)malloc(sizeof(Symasgn));
+	if(!a) {
+		printf("out of space");
+	exit(0);
+	}
+	a->nodetype = 'S';
+  strcpy(a->s, s);
+	// a->s = s; /*Símbolo/variável*/
+	a->v = 0; /*Valor*/
+	return (Ast *)a;
+}
+
 Ast * newValorVal(char s[]) { /*Função que recupera o nome/referência de uma variável, neste caso o número*/
 	
 	Varval *a = (Varval*) malloc(sizeof(Varval));
@@ -115,7 +128,8 @@ Ast * newValorVal(char s[]) { /*Função que recupera o nome/referência de uma 
 }
 
 double eval(Ast *a) { /*Função que executa operações a partir de um nó*/
-	double v; 
+	double v;
+	double in;
 	if(!a) {
 		printf("internal error, null eval");
 		return 0.0;
@@ -137,10 +151,14 @@ double eval(Ast *a) { /*Função que executa operações a partir de um nó*/
 		case '6': v = (eval(a->l) <= eval(a->r))? 1 : 0; break;
 		
 		case '=':
-			v = eval(((Symasgn *)a)->v); /*Recupera o valor*/
+			v = eval(((Symasgn *)a)->v);
       get(listaVariaveis, ((Varval *)a)->var)->dValue = v;
-			// aux = ((Symasgn *)a)->s;	/*Recupera o símbolo/variável*/
-			// var[aux] = v;				/*Atribui à variável*/
+			break;
+
+		case 'S':
+			printf("DEBUG[%s]:IN:>> ", ((Varval *)a)->var);
+			scanf("%lf", &(get(listaVariaveis, ((Varval *)a)->var)->dValue));
+      // get(listaVariaveis, ((Varval *)a)->var)->dValue = v;
 			break;
 		
 		case 'I':						/*CASO IF*/
@@ -168,11 +186,12 @@ double eval(Ast *a) { /*Função que executa operações a partir de um nó*/
 			}
 		break;
 			
-		case 'L': eval(a->l); v = eval(a->r); break; /*Lista de operções em um bloco IF/ELSE/WHILE. Assim o analisador não se perde entre os blocos*/
+		case 'L': eval(a->l); v = eval(a->r); break;
 		
-		case 'P': 	v = eval(a->l);		/*Recupera um valor*/
-      printf ("%.2f\n",v); break;  /*Função que imprime um valor*/
-		
+		case 'P': 	v = eval(a->l);
+			printf("DEBUG[%s]:OUT:>> %.2f\n", ((Varval *)a)->var, v);
+      // printf ("out>> ", v);
+			break;
 		default: printf("internal error: bad node %c\n", a->nodetype);
 				
 	}

@@ -9,6 +9,7 @@ IF "zif"
 ELSE "zelse"
 WHILE "while"
 PRINT "print"
+SCAN "scan"
 
 %%
 
@@ -34,6 +35,7 @@ PRINT "print"
 {ELSE} {return ELSE;}
 {WHILE} {return WHILE;}
 {PRINT} {return PRINT;}
+{SCAN} { return SCAN; }
 
 [A-Za-z][a-zA-Z0-9]*	{ strcpy(yylval.str, yytext); return VAR;}
 

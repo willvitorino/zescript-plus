@@ -10,6 +10,7 @@ dd = 10
 		}
 	}zelse{
 		zif (bb > cc){
+			scan(dd)
 			print (bb)
 		}zelse{
 			print (cc)
