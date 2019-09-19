@@ -188,9 +188,10 @@ double eval(Ast *a) { /*Função que executa operações a partir de um nó*/
 			
 		case 'L': eval(a->l); v = eval(a->r); break;
 		
-		case 'P': 	v = eval(a->l);
-			printf("DEBUG[%s]:OUT:>> %.2f\n", ((Varval *)a)->var, v);
-      // printf ("out>> ", v);
+		case 'P':
+			v = eval(a->l);
+			// ((Varval *)a)->var
+			printf("DEBUG:OUT:>> %.2f\n", v);
 			break;
 		default: printf("internal error: bad node %c\n", a->nodetype);
 				
