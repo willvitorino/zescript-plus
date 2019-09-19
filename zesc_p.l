@@ -8,8 +8,8 @@ FIM "FIM"
 IF "zif"
 ELSE "zelse"
 WHILE "while"
-PRINT "print"
-SCAN "scan"
+PRINT "show"
+SCAN "read"
 
 %%
 

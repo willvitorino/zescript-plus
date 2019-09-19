@@ -2,24 +2,25 @@ aa = 2
 bb = 4
 cc = 8
 dd = 10
+read (dd)
 	zif(aa > bb){
 		zif(aa > cc){
-			print(aa)
+			show (aa)
 		}zelse{
-			print(cc)
+			show (cc)
 		}
 	}zelse{
 		zif (bb > cc){
-			scan(dd)
-			print (bb)
+			read (dd)
+			show (bb)
 		}zelse{
-			print (cc)
+			show (cc)
 		}
 	}
 	
 	while(aa < dd){
 		aa = aa + 1
-		print (aa)
+		show (aa)
 	}
 		
 FIM
