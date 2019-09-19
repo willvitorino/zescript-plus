@@ -1,8 +1,8 @@
-aa = 2
+aa = 8@3
+show (aa)
 bb = 4
 cc = 8
 dd = 10
-read (dd)
 	zif(aa > bb){
 		zif(aa > cc){
 			show (aa)

@@ -30,6 +30,7 @@ void yyerror (char *s){
 %right '='
 %left '+' '-'
 %left '*' '/'
+%left '^' '@'
 
 %type <a> exp list stmt prog
 
@@ -60,10 +61,12 @@ list:	  stmt{$$ = $1;}
 		;
 	
 exp: 
-	 exp '+' exp {$$ = newast('+',$1,$3);}		/*Expressões matemáticas*/
-	|exp '-' exp {$$ = newast('-',$1,$3);}
-	|exp '*' exp {$$ = newast('*',$1,$3);}
-	|exp '/' exp {$$ = newast('/',$1,$3);}
+	 exp '+' exp {$$ = newast('+', $1, $3);}		/*Expressões matemáticas*/
+	|exp '-' exp {$$ = newast('-', $1, $3);}
+	|exp '*' exp {$$ = newast('*', $1, $3);}
+	|exp '/' exp {$$ = newast('/', $1, $3);}
+	|exp '^' exp {$$ = newast('^', $1, $3);}
+	|exp '@' exp {$$ = newast('@', $1, $3);}
 	|exp CMP exp {$$ = newcmp($2,$1,$3);}		/*Testes condicionais*/
 	|'(' exp ')' {$$ = $2;}
 	|'-' exp %prec NEG {$$ = newast('M',$2,NULL);}

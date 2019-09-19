@@ -108,7 +108,6 @@ Ast * scanasgn(char s[]) { /*Função para um nó de atribuição*/
 	}
 	a->nodetype = 'S';
   strcpy(a->s, s);
-	// a->s = s; /*Símbolo/variável*/
 	a->v = 0; /*Valor*/
 	return (Ast *)a;
 }
@@ -141,6 +140,8 @@ double eval(Ast *a) { /*Função que executa operações a partir de um nó*/
 		case '-': v = eval(a->l) - eval(a->r); break;	/*Operações*/
 		case '*': v = eval(a->l) * eval(a->r); break;	/*Operações*/
 		case '/': v = eval(a->l) / eval(a->r); break; /*Operações*/
+		case '^': v = pow(eval(a->l), eval(a->r)); break; /*Operações*/
+		case '@': v = pow(eval(a->l), 1/eval(a->r)); break; /*Operações*/
 		case 'M': v = -eval(a->l); break;				/*Operações, número negativo*/
 	
 		case '1': v = (eval(a->l) > eval(a->r))? 1 : 0; break;	/*Operações lógicas. "árv esq   >   árv dir"  Se verdade 1, falso 0*/
@@ -158,7 +159,6 @@ double eval(Ast *a) { /*Função que executa operações a partir de um nó*/
 		case 'S':
 			printf("DEBUG[%s]:IN:>> ", ((Varval *)a)->var);
 			scanf("%lf", &(get(listaVariaveis, ((Varval *)a)->var)->dValue));
-      // get(listaVariaveis, ((Varval *)a)->var)->dValue = v;
 			break;
 		
 		case 'I':						/*CASO IF*/
