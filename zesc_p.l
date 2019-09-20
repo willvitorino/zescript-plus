@@ -20,7 +20,7 @@ SCAN "input"
 	return NUM;
 }
 
-[-+()=/*^{};@] { return *yytext; }
+[-+()=/*^{};@:] { return *yytext; }
 			
 
 ">" {yylval.fn = 1; return CMP; }
