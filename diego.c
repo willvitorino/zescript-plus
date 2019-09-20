@@ -157,7 +157,7 @@ double eval(Ast *a) { /*Função que executa operações a partir de um nó*/
 			break;
 
 		case 'S':
-			printf("DEBUG[%s]:IN:>> ", ((Varval *)a)->var);
+			printf("[%s]:IN:>> ", ((Varval *)a)->var);
 			scanf("%lf", &(get(listaVariaveis, ((Varval *)a)->var)->dValue));
 			break;
 		
@@ -191,7 +191,7 @@ double eval(Ast *a) { /*Função que executa operações a partir de um nó*/
 		case 'P':
 			v = eval(a->l);
 			// ((Varval *)a)->var
-			printf("DEBUG:OUT:>> %.2f\n", v);
+			printf("OUT:>> %.2f\n", v);
 			break;
 		default: printf("internal error: bad node %c\n", a->nodetype);
 				
