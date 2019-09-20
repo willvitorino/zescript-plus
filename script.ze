@@ -1,26 +1,10 @@
 aa = 8@3
-show (aa)
+print (aa)
 bb = 4
 cc = 8
-dd = 10
-	zif(aa > bb){
-		zif(aa > cc){
-			show (aa)
-		}zelse{
-			show (cc)
-		}
-	}zelse{
-		zif (bb > cc){
-			read (dd)
-			show (bb)
-		}zelse{
-			show (cc)
-		}
-	}
-	
-	while(aa < dd){
-		aa = aa + 1
-		show (aa)
-	}
-		
+dd = 10	
+while(aa < dd):
+	aa = aa + 1
+	print (aa)
+:
 FIM

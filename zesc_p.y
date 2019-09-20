@@ -50,7 +50,7 @@ prog: stmt 		{eval($1);}  /*Inicia e execução da árvore de derivação*/
 	
 stmt: IF '(' exp ')' '{' list '}' %prec IFX {$$ = newflow('I', $3, $6, NULL);}
 	| IF '(' exp ')' '{' list '}' ELSE '{' list '}' {$$ = newflow('I', $3, $6, $10);}
-	| WHILE '(' exp ')' '{' list '}' {$$ = newflow('W', $3, $6, NULL);}
+	| WHILE exp ':' list ':' {$$ = newflow('W', $2, $4, NULL);}
 	| VAR '=' exp {$$ = newasgn($1, $3);}
 	| PRINT '(' exp ')' { $$ = newast('P', $3, NULL);}
 	| SCAN '(' VAR ')' { $$ = scanasgn($3);}
