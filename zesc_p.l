@@ -38,7 +38,7 @@ SCAN "input"
 {SCAN} { return SCAN; }
 
 [A-Za-z][a-zA-Z0-9]*	{ strcpy(yylval.str, yytext); return VAR;}
-
+"#" {;}
 [\ \n\t]*	{;}
 . {printf("(%s) Ingonrado\n",yytext);}
 %%
