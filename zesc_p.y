@@ -48,8 +48,8 @@ prog: stmt 		{eval($1);}  /*Inicia e execução da árvore de derivação*/
 /*Funções para análise sintática e criação dos nós na AST*/	
 /*Verifique q nenhuma operação é realizada na ação semântica, apenas são criados nós na árvore de derivação com suas respectivas operações*/
 	
-stmt: IF '(' exp ')' '{' list '}' %prec IFX {$$ = newflow('I', $3, $6, NULL);}
-	| IF '(' exp ')' '{' list '}' ELSE '{' list '}' {$$ = newflow('I', $3, $6, $10);}
+stmt: IF '(' exp ')' ':' list ':' %prec IFX {$$ = newflow('I', $3, $6, NULL);}
+	| IF '(' exp ')' ':' list ':' ELSE ':' list ':' {$$ = newflow('I', $3, $6, $10);}
 	| WHILE exp ':' list ':' {$$ = newflow('W', $2, $4, NULL);}
 	| VAR '=' exp {$$ = newasgn($1, $3);}
 	| PRINT '(' exp ')' { $$ = newast('P', $3, NULL);}
